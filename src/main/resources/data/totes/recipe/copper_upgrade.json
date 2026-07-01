@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "minecraft:copper_block",
+    "I": "minecraft:copper_ingot",
+    "U": "totes:tote"
+  },
+  "pattern": [
+    "BIB",
+    "IUI",
+    "BIB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "totes:copper_upgrade"
+  }
+}

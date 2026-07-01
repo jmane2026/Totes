@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "minecraft:netherite_block",
+    "I": "minecraft:netherite_ingot",
+    "U": "totes:diamond_upgrade"
+  },
+  "pattern": [
+    "BIB",
+    "IUI",
+    "BIB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "totes:netherite_upgrade"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": "minecraft:ender pearl",
+    "D": "minecraft:diamond",
+    "E": "minecraft:emerald"
+  },
+  "pattern": [
+    " E ",
+    "DPD",
+    " E "
+  ],
+  "result": {
+    "count": 1,
+    "id": "totes:tote_linker"
+  }
+}

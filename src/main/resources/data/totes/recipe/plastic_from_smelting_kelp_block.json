@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "ingredient": "minecraft:dried_kelp",
+  "result": {
+    "id": "totes:plastic"
+  }
+}

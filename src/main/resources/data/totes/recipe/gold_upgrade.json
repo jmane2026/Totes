@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "minecraft:gold_block",
+    "I": "minecraft:gold_ingot",
+    "U": "totes:iron_upgrade"
+  },
+  "pattern": [
+    "BIB",
+    "IUI",
+    "BIB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "totes:gold_upgrade"
+  }
+}

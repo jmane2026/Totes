@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "minecraft:diamond_block",
+    "I": "minecraft:diamond_ingot",
+    "U": "totes:gold_upgrade"
+  },
+  "pattern": [
+    "BIB",
+    "IUI",
+    "BIB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "totes:diamond_upgrade"
+  }
+}

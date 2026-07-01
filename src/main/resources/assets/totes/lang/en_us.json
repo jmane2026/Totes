@@ -1,0 +1,15 @@
+{
+  "block.totes.tote": "Tote",
+  "container.totes.tote": "Tote",
+  "block.totes.tote_controller": "Tote Controller",
+  "item.totes.copper_upgrade": "Copper Upgrade",
+  "item.totes.iron_upgrade": "Iron Upgrade",
+  "item.totes.gold_upgrade": "Gold Upgrade",
+  "item.totes.diamond_upgrade": "Diamond Upgrade",
+  "item.totes.netherite_upgrade": "Netherite Upgrade",
+  "item.totes.void_upgrade": "Void Upgrade",
+  "item.totes.tote_key": "Tote Key",
+  "item.totes.tote_linker": "Tote Linker",
+  "item.totes.plastic": "Plastic",
+  "itemGroup.totes.tote_tab": "Totes"
+}

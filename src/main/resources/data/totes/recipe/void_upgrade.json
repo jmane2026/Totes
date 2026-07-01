@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": "minecraft:obsidian",
+    "T": "totes:tote"
+  },
+  "pattern": [
+    "OOO",
+    "OTO",
+    "OOO"
+  ],
+  "result": {
+    "count": 1,
+    "id": "totes:void_upgrade"
+  }
+}

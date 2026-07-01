@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "particle": "totes:block/tote",
+    "top": "totes:block/tote",
+    "front": "totes:block/tote_controller",
+    "side": "totes:block/tote"
+  }
+}
