@@ -9,6 +9,9 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
@@ -16,17 +19,58 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ToteControllerBlockEntity extends BlockEntity {
     private final List<BlockPos> linkedTotes = new ArrayList<>();
 
     public ToteControllerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.TOTE_CONTROLLER_BE.get(), pos, state);
+    }
+
+    private long lastInteractionTime = 0;
+    private UUID lastInteractingPlayer = null;
+
+    public void depositItems(Player player, InteractionHand hand) {
+        ItemStack playerStack = player.getItemInHand(hand);
+
+        long currentTime = level.getGameTime();
+        // Detect if the player is holding the right-click button (calls every 4 ticks)
+        boolean isHolding = player.getUUID().equals(lastInteractingPlayer) && (currentTime - lastInteractionTime) < 5;
+
+        lastInteractionTime = currentTime;
+        lastInteractingPlayer = player.getUUID();
+
+        if (isHolding) {
+            // Hold Logic: Scan the entire inventory and deposit anything that fits into linked Totes
+            for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                ItemStack invStack = player.getInventory().getItem(i);
+                if (invStack.isEmpty()) continue;
+
+                try (Transaction tx = Transaction.open(null)) {
+                    int inserted = itemHandler.insert(0, ItemResource.of(invStack), invStack.getCount(), tx);
+                    if (inserted > 0) {
+                        invStack.shrink(inserted);
+                        tx.commit();
+                    }
+                }
+            }
+        } else if (!playerStack.isEmpty()) {
+            // Single Click Logic: Deposit 1 from hand
+            try (Transaction tx = Transaction.open(null)) {
+                int inserted = itemHandler.insert(0, ItemResource.of(playerStack), 1, tx);
+                if (inserted > 0) {
+                    playerStack.shrink(inserted);
+                    tx.commit();
+                }
+            }
+        }
     }
 
     public List<BlockPos> getLinkedTotes() { return linkedTotes; }

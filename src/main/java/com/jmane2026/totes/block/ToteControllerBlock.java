@@ -67,6 +67,15 @@ public class ToteControllerBlock extends BaseEntityBlock {
                 }
                 return InteractionResult.SUCCESS;
             }
+
+            // Allow Linker to pass through for its own logic
+            if (stack.is(ModItems.TOTE_LINKER.get())) return InteractionResult.PASS;
+
+            // Handle item deposition
+            if (!level.isClientSide()) {
+                controller.depositItems(player, hand);
+            }
+            return InteractionResult.SUCCESS;
         }
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }
